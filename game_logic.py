@@ -36,7 +36,20 @@ def check_game_over(mistakes, secret_word, guessed_letters):
         print("Congratulations, you saved the snowman!")
         return False    
     
+def guess_input(guessed_letters):
+    """Handels and checks the input of the guessed letter"""
+    while True:
+        guess = input("Guess a letter: ").lower()
+        if len(guess)!=1 or not guess.isalpha():
+            print("Invalid input! Please enter a single letter")
+        elif guess in guessed_letters:
+            print("You already guessed " + guess +". Do you want the snowman to melt?")
+            break
+        else:
+            break    
+    return guess
     
+        
 def play_game():
     """Single round of the game"""
     secret_word = get_random_word()
@@ -45,7 +58,7 @@ def play_game():
     guessed_letters = []    
     display_game_state(mistakes, secret_word, guessed_letters)
     while game_running:
-        guess = input("Guess a letter: ").lower()
+        guess = guess_input(guessed_letters)
         guessed_letters.append(guess)
         if guess not in secret_word:
             mistakes+=1
