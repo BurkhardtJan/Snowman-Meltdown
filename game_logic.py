@@ -68,16 +68,3 @@ def play_game():
             mistakes += 1
         display_game_state(mistakes, secret_word, guessed_letters)
         game_running = check_game_over(mistakes, secret_word, guessed_letters)
-
-
-def main():
-    print("Welcome to Snowman Meltdown!")
-    while True:
-        play_game()
-        replay = input("Play again (Default yes, type no to quit): ").lower()
-        if replay in ["no", "nein", "n"]:
-            break
-
-
-if __name__ == "__main__":
-    main()
