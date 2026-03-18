@@ -25,7 +25,7 @@ def display_game_state(mistakes, secret_word, guessed_letters):
 
 def check_game_over(mistakes, secret_word, guessed_letters):
     """Checks if game is is over. If yes, displays final message."""
-    if mistakes == 3:
+    if mistakes == len(STAGES) - 1:
         print("Game Over! The word was: " + secret_word)
         return False
    
@@ -38,11 +38,11 @@ def check_game_over(mistakes, secret_word, guessed_letters):
     
     
 def play_game():
+    """Single round of the game"""
     secret_word = get_random_word()
     mistakes = 0
     game_running = True
-    guessed_letters = []
-    print("Welcome to Snowman Meltdown!")
+    guessed_letters = []    
     display_game_state(mistakes, secret_word, guessed_letters)
     while game_running:
         guess = input("Guess a letter: ").lower()
@@ -51,7 +51,15 @@ def play_game():
             mistakes+=1
         display_game_state(mistakes, secret_word, guessed_letters)
         game_running  = check_game_over(mistakes, secret_word, guessed_letters)
+ 
     
+def main():
+    print("Welcome to Snowman Meltdown!") 
+    while True:
+        play_game()   
+        replay = input("Play again (yes/no): ").lower()
+        if replay in ["no", "nein", "n"]:
+            break
     
 if __name__ == "__main__":
-    play_game()
+    main()
