@@ -34,6 +34,7 @@ def check_game_over(mistakes, secret_word, guessed_letters):
             if letter not in guessed_letters:
                 return True 
         print("Congratulations, you saved the snowman!")
+        print(STAGES[mistakes].replace("o", "^"))
         return False    
     
 def guess_input(guessed_letters):
